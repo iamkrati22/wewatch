@@ -278,9 +278,9 @@ footer p{
 
 .pfp-group button{
   font-size: 90%;
-  width: 15%;
+  margin: 5px;
   color: #fff;
-  background-color:#777;
+  background-color: var(--dark-blue);
 }
 .row{
   display: flex;

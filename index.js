@@ -9,9 +9,10 @@ var upload = multer();
 const mongoose = require("mongoose");
 const signup = require('./models/signup');
 
+app.use(express.json({limit: '25mb'}));
+app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 app.use(cors());
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array()); 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view options", {layout: false});
@@ -42,7 +43,6 @@ app.get('/help', (req, res) => {
 app.get('/popular', (req, res) => {
     res.sendFile(views+`/popular.html`);
 })
-
 
 app.get('/categories', (req, res) => {
     res.sendFile(views+`/categories.html`);

@@ -14,9 +14,6 @@
     <style>
         .card {
           border: none;
-          margin-top: 0px;
-          background-color: #d0efff!important;
-          width: auto;
         }
         .form-control:focus {
           box-shadow: none;
@@ -26,15 +23,19 @@
           outline: none;
           box-shadow: none;
         }
-        #ppr{
-         
-          border-radius: 0px;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
+        #pfp{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            object-position: 0% 20%;
+            border: 1px solid black;
+            transition: 1s ease-in;
         }
-        .col-md-6{
-     
+        .navbar{
+          background-color: #03254c ;
+        }
+        .card{
+        background-color: #d0efff;
         }
       </style>
       <script>
@@ -79,8 +80,8 @@
   </nav>
 
   <div class="container">
-    <div class="row justify-content-center align-items-center" id = "ppr">
-      <div class="col-md-6">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6 mt-5">
         <div class="card">
           
               <h1 class="text-center">Your Profile</h1>
@@ -89,9 +90,14 @@
             <form class="form" id="signup-form">
                 <div class="pfp-group">
                     Profile Picture 
-                    <img id='pfp' class="mr-1 rounded-circle" src="" alt="Person 1" style="width: 100px; height: 100px; object-fit: cover; object-position: 0% 20%;">
-                    <button type="button" class="btn btn-block">Update</button>
+                    <img id='pfp' class="mr-1 rounded-circle" src="" alt="Person 1">
+                    <div style="display: flex; flex-direction: row;">
+                        <input type="file" accept="image/*" id="imgupload" style="display:none" onchange="imageUploaded()"/>
+                        <button id="OpenImgUpload" onclick="$('#imgupload').trigger('click')" type="button" class="btn btn-block" id = "update">Update</button> <br></br>
+                        <button type="button" id='save-img' class="btn btn-block">Submit</button>
+                    </div>
                 </div>
+                <div id="error" style="display: none; color: #f00;">Failed due to some error. Try again.</div>
               <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" readonly>
@@ -176,23 +182,32 @@
         }
         await reader.readAsDataURL(file);
     }
-
-    // Hasshing the Password
-    async function sha256(message) {
-      // encode as UTF-8
-      const msgBuffer = new TextEncoder().encode(message);                    
-      // hash the message
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      // convert ArrayBuffer to Array
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      // convert bytes to hex string                  
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      return hashHex;
-    }
-
-    function updateImage() {
-        
-    }
+        document.getElementById('save-img').addEventListener('click', ()=>{
+        const data=JSON.stringify({
+            email: localStorage.getItem('email'),
+            image: img
+        });
+        console.log(data);
+        fetch(`http://127.0.0.1:5000/updatePicture`, {
+            headers: {
+                'content-type': 'application/json',
+            },
+            method: 'POST',
+            body: data,
+        })
+        .then((res)=>{
+            if(res.status===200){
+                setTimeout(()=>{
+                    window.location.reload();
+                }, 1000);
+            } else {
+                document.getElementById('error').style.display='flex';
+                setTimeout(()=>{
+                    document.getElementById('error').style.display='none';
+                }, 3000)
+            }
+        })
+        })
   </script>
 </body>
 </html>
