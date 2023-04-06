@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Help & Queries</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <link rel = "stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .submit-response{
+      display: none;
+      font-weight: 600;
+      color: #00e900;
+      margin-top: 3%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav id = "nav-outer-ctn" class="navbar navbar-expand-lg" >
+  
+  <div class="logo">
+    <a href="/home.html"><img src="./../assets/logo/WeWatch_logo.png" width="50px"></a>
+  </div>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mx-auto" id = "nav-container">
+      <li class="nav-item">
+        <a class="nav-link" href="/home.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories.html">Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/trending.html">Trending</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/popular.html">Popular Channels</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="help.html">Help & Support</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="tmdb.html">Popular Movies</a>
+    </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a id="anchor" href="signup.html"><img id="pfp" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Profile Picture" class="profile-image"></a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container mt-5">
+  <div class="rowp">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center" id = "addmargin">How can we help you?</h2>
+      <form class="search-box" onsubmit="return MyForm();">
+        <input type="text" class="form-control" placeholder="Describe your issue" id="issue">
+        <button type="submit" id = "submitB">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="submit-response" id="res">
+    <center>
+      Your Query has been recorded!
+    </center>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class=" text-white text-center py-3" >
+  <p class="copyright">&copy; 2023 By WeWatch All rights reserved.</p>
+  <p class="support">If you have any issues, please contact us at support@wewatch.ca</p>
+</footer>
+
+<script>
+
+    if(localStorage.getItem('email')){
+      document.getElementById('anchor').setAttribute('href', './profile.html');
+      document.getElementById('pfp').setAttribute('src', `data:image/png;base64,`+localStorage.getItem('pfp'));
+    }
+
+  function MyForm() {
+    if(document.getElementById('issue').value!==''){
+      document.getElementById('res').style.display="block";
+      document.getElementById('issue').value = "";
+      setTimeout(()=>{document.getElementById('res').style.display="none";}, 3000)
+    }
+    
+    return false;
+  }
+
+</script>
+
+</body>
+</html>

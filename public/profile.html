@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Profile</title>
+    <style>
+        .card {
+          border: none;
+          margin-top: 0px;
+          background-color: #d0efff!important;
+          width: auto;
+        }
+        .form-control:focus {
+          box-shadow: none;
+        }
+        .btn:focus,
+        .btn:active {
+          outline: none;
+          box-shadow: none;
+        }
+        #ppr{
+         
+          border-radius: 0px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+        .col-md-6{
+     
+        }
+      </style>
+      <script>
+        if(!localStorage.getItem('email')){
+          window.location.href='./login.html';
+        }
+       </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+  <nav id="nav-outer-ctn" class="navbar navbar-expand-lg">
+
+    <div class="logo">
+      <a href="/home.html"><img src="./../assets/logo/WeWatch_logo.png" width="50px"></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto" id="nav-container">
+        <li class="nav-item">
+          <a class="nav-link" href="/home.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/categories.html">Categories</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/trending.html">Trending</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/popular.html">Popular Channels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="help.html">Help & Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tmdb.html">Popular Movies</a>
+      </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row justify-content-center align-items-center" id = "ppr">
+      <div class="col-md-6">
+        <div class="card">
+          
+              <h1 class="text-center">Your Profile</h1>
+        
+          <div class="card-body">
+            <form class="form" id="signup-form">
+                <div class="pfp-group">
+                    Profile Picture 
+                    <img id='pfp' class="mr-1 rounded-circle" src="" alt="Person 1" style="width: 100px; height: 100px; object-fit: cover; object-position: 0% 20%;">
+                    <button type="button" class="btn btn-block">Update</button>
+                </div>
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" readonly>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" readonly>
+              </div>
+              <div class="form-group">
+                <label for="myRange">Age - </label>
+                <span id="sliderValue"></span>
+              </div>
+              <div class="form-group">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="occupation" disabled>
+                  <option value="" selected disabled hidden>Choose your Occupation</option>
+                  <option value="engineer">Engineer</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="architect">Architect</option>
+                  <option value="scientist">Scientist</option>
+                  <option value="electrician">Electrician</option>
+                  <option value="plumber">Plumber</option>
+                  <option value="designer">Designer</option>
+                  <option value="student">Student</option>
+                  <option value="mechanic">Mechanic</option>
+                  <option value="lawyer">Lawyer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="birthdaytime">Date of Birth - </label><br>
+                <span id="birthdaytime"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" readonly>
+              </div>
+            </form>
+            <span id="load" style="display: flex;width: 100%;align-items: center; justify-content: center; flex-direction: row; margin-top: 5%;"></span>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class=" text-white text-center py-3">
+    <p class="copyright">&copy; 2023 By WeWatch All rights reserved.</p>
+    <p class="support">If you have any issues, please contact us at support@wewatch.ca</p>
+  </footer>
+
+  <script>
+    // fetching data from backend
+    fetch(`http://127.0.0.1:5000/profileData?email=${localStorage.getItem('email')}`, {
+        headers: {
+          'content-type': 'application/json',
+        },
+        method: 'GET',
+      }).then((res)=> res.json())
+      .then((result)=>{
+        if(result.status){
+            document.getElementById('pfp').setAttribute('src', `data:image/png;base64,`+result.data.image);
+            document.getElementById('firstName').value=result.data.firstName;
+            document.getElementById('lastName').value=result.data.lastName;
+            document.getElementById('sliderValue').innerHTML=result.data.age;
+            document.getElementById('occupation').value=result.data.occupation;
+            document.getElementById('birthdaytime').innerHTML=new Date(result.data.dob);
+            document.getElementById('email').value=result.data.email;
+            console.log(result.data);
+        } else {
+            localStorage.clear();
+            window.location.href=`./login.html`;
+        }
+      })
+
+    // For Image conversion
+    let img='';
+    async function imageUploaded() {
+        var file = document.querySelector('input[type=file]')['files'][0];
+        var reader = new FileReader();
+        reader.onload = async function () {
+            img = await reader.result.replace("data:", "").replace(/^.+,/, "");
+        }
+        await reader.readAsDataURL(file);
+    }
+
+    // Hasshing the Password
+    async function sha256(message) {
+      // encode as UTF-8
+      const msgBuffer = new TextEncoder().encode(message);                    
+      // hash the message
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      // convert ArrayBuffer to Array
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      // convert bytes to hex string                  
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
+    function updateImage() {
+        
+    }
+  </script>
+</body>
+</html>

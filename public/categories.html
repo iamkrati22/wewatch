@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Categories</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .category-card {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        // Set up your YouTube API credentials
+        var apiKey = 'AIzaSyDMTVjJAjAtjMJWlALtc6-R5PqnW_yPIbM';
+
+        // Make a request to the YouTube API
+        $.get('https://www.googleapis.com/youtube/v3/videoCategories', {
+            key: apiKey,
+            part: 'snippet',
+            regionCode: 'US'
+        }, function(response) {
+            console.log(response);
+            // Parse the API response
+            $.each(response.items, function(index, item) {
+                var categoryId = item.id;
+                var categoryTitle = item.snippet.title;
+               
+                var categoryDescription = item.snippet.description;
+
+                // Create a category card
+                var categoryCard = $('<div>').addClass('card category-card');
+               
+                var cardBody = $('<div>').addClass('card-body');
+                var cardTitle = $('<h5>').addClass('card-title').text(categoryTitle);
+                var cardText = $('<p>').addClass('card-text').text(categoryDescription);
+
+                // Add the card components
+                cardBody.append(cardTitle, cardText);
+                categoryCard.append( cardBody);
+                $('#categories').append(categoryCard);
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+  <nav id="nav-outer-ctn" class="navbar navbar-expand-lg">
+
+    <div class="logo">
+      <a href="/home.html"><img src="./../assets/logo/WeWatch_logo.png" width="50px"></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto" id="nav-container">
+        <li class="nav-item">
+          <a class="nav-link" href="/home.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/categories.html">Categories</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/trending.html">Trending</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/popular.html">Popular Channels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="help.html">Help & Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tmdb.html">Popular Movies</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a id="anchor" href="signup.html"><img id='pfp' src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Profile Picture" class="profile-image"></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <div class="container mt-5">
+        <h2 class="vc" >Video Categories</h2>
+        <div class="row" id="categories"></div>
+    </div>
+    <div style="height: 10%; margin-bottom: 10%;""></div>
+    <!-- Footer -->
+    <footer class="text-white text-center py-3">
+        <p class="copyright">&copy; 2023 By WeWatch All rights reserved.</p>
+        <p class="support">If you have any issues, please contact us at support@wewatch.ca</p>
+      </footer>
+      <script>
+        if(localStorage.getItem('email')){
+          document.getElementById('anchor').setAttribute('href', './profile.html');
+          document.getElementById('pfp').setAttribute('src', `data:image/png;base64,`+localStorage.getItem('pfp'));
+        }
+      </script>
+</body>
+</html>

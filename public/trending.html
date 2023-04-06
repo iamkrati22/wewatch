@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Trending Videos</title>
+  <style>
+    .head {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav id="nav-outer-ctn" class="navbar navbar-expand-lg">
+
+    <div class="logo">
+      <a href="/home.html"><img src="./../assets/logo/WeWatch_logo.png" width="50px"></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto" id="nav-container">
+        <li class="nav-item">
+          <a class="nav-link" href="/home.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/categories.html">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/trending.html">Trending</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/popular.html">Popular Channels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="help.html">Help & Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tmdb.html">Popular Movies</a>
+      </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a id ='anchor' href="signup.html"><img id="pfp" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Profile Picture" class="profile-image"></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <span class="head">
+      <h1 class="vc">TOP 5</h1>
+    </span>
+    <div class="cards" id="video-list">
+
+    </div>
+  </div>
+   
+    
+  </div>
+  <div style="height: 10%; margin-bottom: 10%;""></div>
+  <!-- Footer -->
+  <footer class=" text-white text-center py-3">
+    <p class="copyright">&copy; 2023 By WeWatch All rights reserved.</p>
+    <p class="support">If you have any issues, please contact us at support@wewatch.ca</p>
+  </footer>
+  <script>
+    // function getYouTubeVideos1(query) {
+    //   var apiKey = 'AIzaSyDMTVjJAjAtjMJWlALtc6-R5PqnW_yPIbM';
+    //   var apiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + encodeURIComponent(query) + '&key=' + apiKey;
+    //   var count = 0;
+    //   $.ajax({
+    //     url: apiUrl,
+    //     dataType: 'json',
+    //     success: function(data) {
+    //       console.log(data);
+    //       $('#video-list').empty();
+    //       $.each(data.items, function(index, item) {
+    //         var videoId = item.id.videoId;
+    //         var title = item.snippet.title;
+    //         var channelTitle = item.snippet.channelTitle;
+    //         var thumbnail = item.snippet.thumbnails.medium.url;
+    //         var videoUrl = 'https://www.youtube.com/watch?v=' + videoId;
+    //         count++;
+    //         // var card = '<li><a href="' + videoUrl + '"><img src="' + thumbnail + '"><h5>' + channelTitle + '</h5><h3>' + title + '</h3></a></li>';
+    //         var card =  " <div class='card'> <img class='card-img-top' src=" + thumbnail + " alt'Card image cap'> <div class='card-body'><h5 class='card-title'>" + title  + "</h5> <h6 class='card-subtitle mb-2 text-muted'>" + channelTitle + "</h6> <a href= " + videoUrl + "class='card-link'>Play </a></div></div>"
+    //         if (count<=5)
+    //           $('#video-list-2').append(card);
+    //         else
+    //           $('#video-list-3').append(card);
+    //       });
+    //     }
+    //   });
+    // }
+
+    if(localStorage.getItem('email')){
+      document.getElementById('anchor').setAttribute('href', './profile.html');
+      document.getElementById('pfp').setAttribute('src', `data:image/png;base64,`+localStorage.getItem('pfp'));
+    }
+
+    function getYouTubeVideos() {
+      var apiKey = 'AIzaSyDJ8Pm1FTSSrBBMaV470_KadrxNqGLlotg';
+      var apiUrl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&key=' + apiKey;
+      var count = 0;
+      $.ajax({
+        url: apiUrl,
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+          $.each(data.items, function (index, item) {
+            var videoId = item.id;
+            var title = item.snippet.title;
+            var channelTitle = item.snippet.channelTitle;
+            var thumbnail = item.snippet.thumbnails.medium.url;
+            console.log(videoId);
+            var videoUrl = 'https://www.youtube.com/watch?v=' + videoId;
+            count++;
+            var card = " <div class='card'> <img class='card-img-top' src=" + thumbnail + " alt'Card image cap'> <div class='card-body'><h5 class='card-title'>" + title + "</h5> <h6 class='card-subtitle mb-2 text-muted'>" + channelTitle + "</h6> <a href= " + videoUrl + "class='card-link'>Play </a></div></div>"
+            if (count<=5)
+              $('#video-list').append(card);
+            else
+              $('#n').append(card);
+          });
+        }
+      });
+    }
+
+    $(document).ready(function () {
+      getYouTubeVideos();
+      var words = ['Hustle', 'Money', 'Game', 'Cricket', 'Football', 'Rugby', 'Baseball', 'Basketball', 'Tech', 'Canada', 'USA', 'Singing', 'India', 'Nepal'];
+      var word = words[Math.floor(Math.random()*words.length)];
+      getYouTubeVideos1(word);
+    });
+  </script>
+</body>
+
+</html>

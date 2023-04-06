@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <link rel = "stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+   
+    .rt-s h4{
+      font-style: bold;
+      font-size: 13px;
+    }
+    .rt-s h5{
+      font-style: italic;
+      font-size: 10px;
+    }
+    .container {
+        margin-top: 40px;
+    }
+    .person-info {
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .person-info:nth-child(even) .person-image {
+        order: 2;
+    }
+    .person-image {
+        width: 40%;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .media{
+      margin-top:0px;
+    }
+    /* .person-image img {
+        object-fit: cover;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+    } */
+    .person-details {
+        width: 50%;
+    }
+    .person-details h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    .person-details p {
+        margin-top: 0;
+
+    }
+    .media-body{
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto;
+      background-color: #d0efff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-left: 5px;
+      margin-right: 15px;
+      margin-top: 20px;
+    }
+    .media-body h4{
+        font-style: bold;
+        font-size: 20px;
+    }
+    .media-body h5{
+        font-size: 15px;
+    }
+    .media-body p {
+   
+    }
+    #am{
+      margin-top: 35px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav id = "nav-outer-ctn" class="navbar navbar-expand-lg" >
+  
+  <div class="logo">
+    <img src="./../assets/logo/WeWatch_logo.png" width="50px">
+  </div>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mx-auto" id = "nav-container">
+      <li class="nav-item">
+        <a class="nav-link" href="/home.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories.html">Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/trending.html">Trending</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/popular.html">Popular Channels</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="help.html">Help & Support</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="tmdb.html">Popular Movies</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a id="anchor" href="signup.html"><img id="pfp" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Profile Picture" class="profile-image" ></a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container mt-5">
+    
+    <div class="rowp">
+      <div class="col-md-12">
+        <div class="media">
+          <div class="rt-s">
+            <img id = "addmargin" class="mr-3 rounded-circle" src="./../assets/images/Anubhav_Sharma.jpeg" alt="Person 1" style="width: 150px; height: 150px; object-fit: cover; object-position: 0% 20%;">
+            <h4 class="mt-0 text-center">Anubhav Sharma</h4>
+            <h5 class="text-center">UX Designer</h5>
+          </div>
+          
+          <div class="media-body" id = "am" >
+            
+            <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra nisi quis ipsum dictum, eu sagittis mi hendrerit. Praesent consectetur metus vel ligula malesuada, nec dignissim mauris bibendum. Aliquam erat volutpat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rowp">
+      <div class="col-md-12">
+        <div class="media">
+          <div class="media-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra nisi quis ipsum dictum, eu sagittis mi hendrerit. Praesent consectetur metus vel ligula malesuada, nec dignissim mauris bibendum. Aliquam erat volutpat.</p>
+          </div>
+          <div class="rt-s">
+            <img class="mr-3 rounded-circle" src="./../assets/images/Jasmeet_Kaur.jpeg" alt="Person 1" style="width: 150px; height: 150px; object-fit: cover; object-position: 0% 0%;">
+            <h4 class="mt-0 text-center">Jasmeet Kaur</h4>
+            <h5 class="text-center">Developer</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rowp">
+      <div class="col-md-12">
+        <div class="media">
+          <div class="rt-s">
+            <img class="mr-3 rounded-circle" src="./../assets/images/Abdou.jpeg" alt="Person 1" style="width: 150px; height: 150px; object-fit: cover;">
+            <h4 class="mt-0 text-center">Abdou M Jallow</h4>
+            <h5 class="text-center">IT & Operations</h5>
+          </div>
+          <div class="media-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra nisi quis ipsum dictum, eu sagittis mi hendrerit. Praesent consectetur metus vel ligula malesuada, nec dignissim mauris bibendum. Aliquam erat volutpat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Footer -->
+<footer class="text-white text-center py-3" >
+  <p class="copyright">&copy; 2023 By WeWatch All rights reserved.</p>
+  <p class="support">If you have any issues, please contact us at support@wewatch.ca</p>
+</footer>
+<script>
+  if(localStorage.getItem('email')){
+      document.getElementById('anchor').setAttribute('href', './profile.html');
+      document.getElementById('pfp').setAttribute('src', `data:image/png;base64,`+localStorage.getItem('pfp'));
+    }
+</script>
+</body>
+</html>

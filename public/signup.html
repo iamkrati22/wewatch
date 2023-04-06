@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <style>
+        .card {
+          border: none;
+        }
+        .form-control:focus {
+          box-shadow: none;
+        }
+        .btn:focus,
+        .btn:active {
+          outline: none;
+          box-shadow: none;
+        }
+      </style>
+      <script>
+        if(localStorage.getItem('email')){
+          window.location.href='./profile.html';
+        }
+       </script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+  <nav id="nav-outer-ctn" class="navbar navbar-expand-lg">
+
+    <div class="logo">
+      <a href="/home.html"><img src="./assets/logo/WeWatch_logo.png" width="50px"></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto" id="nav-container">
+        <li class="nav-item">
+          <a class="nav-link" href="/home.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/categories.html">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/trending.html">Trending</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/popular.html">Popular Channels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="help.html">Help & Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tmdb.html">Popular Movies</a>
+      </li>
+      </ul>
+    </div>
+  </nav>
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mt-5">
+          <div class="card">
+            
+                <h1 class="text-center">Create Account</h1>
+          
+            <div class="card-body">
+              <form class="form" id="signup-form">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                  <label for="myRange">Age</label>
+                  <input type="range" min="1" max="100" value="18" class="slider" id="myRange" style="width: 100%;" required>
+                  <span id="sliderValue"></span>
+                </div>
+                <div class="form-group">
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="occupation" required>
+                    <option value="" selected disabled hidden>Choose your Occupation</option>
+                    <option value="engineer">Engineer</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="architect">Architect</option>
+                    <option value="scientist">Scientist</option>
+                    <option value="electrician">Electrician</option>
+                    <option value="plumber">Plumber</option>
+                    <option value="designer">Designer</option>
+                    <option value="student">Student</option>
+                    <option value="mechanic">Mechanic</option>
+                    <option value="lawyer">Lawyer</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Upload a Profile photo</label>
+                  <input class="form-control" type="file" id="formFile" accept="image/*" required onchange="imageUploaded()">
+                </div>
+                <div class="form-group">
+                  <label for="birthdaytime">Date of Birth:</label><br>
+                  <input type="datetime-local" id="birthdaytime" name="birthdaytime" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" id = "btn-grey" class="btn btn-block">Submit</button>
+              </form>
+              <span id="load" style="display: flex;width: 100%;align-items: center; justify-content: center; flex-direction: row; margin-top: 5%;"></span>
+              <hr>
+              <p class="text-center" style="margin-bottom: 5rem;">Already have an account? <a href="login.html">Sign in</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+  <footer class="text-white text-center py-3">
+    <p class="copyright">&copy; 2023 By WeWatch All rights reserved.</p>
+    <p class="support">If you have any issues, please contact us at support@wewatch.ca</p>
+  </footer>
+  <script>
+    // Age Slider
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("sliderValue");
+    output.innerHTML = slider.value;
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+
+    // For Image conversion
+    let img='';
+    async function imageUploaded() {
+        var file = document.querySelector('input[type=file]')['files'][0];
+        var reader = new FileReader();
+        reader.onload = async function () {
+            img = await reader.result.replace("data:", "").replace(/^.+,/, "");
+        }
+        await reader.readAsDataURL(file);
+    }
+
+    // Hasshing the Password
+    async function sha256(message) {
+      // encode as UTF-8
+      const msgBuffer = new TextEncoder().encode(message);                    
+      // hash the message
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      // convert ArrayBuffer to Array
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      // convert bytes to hex string                  
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
+    // Form Submission
+    document.getElementById('signup-form').addEventListener('submit', submit);
+    async function submit(event){
+      event.preventDefault();
+      var output = document.getElementById('load');
+      output.innerHTML = `<img src='./assets/logo/loading.gif'>`;
+      let password='';
+      await sha256(event.target.password.value).then((pass)=>{
+        password=pass
+      })
+      const date=new Date(event.target.birthdaytime.value)
+      const data=JSON.stringify({
+        "firstName": event.target.firstName.value,
+        "lastName": event.target.lastName.value,
+        "age": Number(slider.value),
+        "occupation": event.target.occupation.value,
+        "dob": date.toISOString(),
+        "image": img,
+        "email":  event.target.email.value,
+        "password": password
+      })
+      
+      fetch('http://127.0.0.1:5000/signup', {
+        headers: {
+          'content-type': 'application/json',
+        },
+        method: 'POST',
+        body: data,
+      }).then((res)=>{
+        if(res.status===200){
+          setTimeout(()=>{
+            output.innerHTML=`<span style='color: #00cc00;'>Successfully Registered. You may login now</span>`
+          }, 1000);
+        } else {
+          setTimeout(()=>{
+            output.innerHTML=`<span style='color: #cc0000;'>Some error occurred. Try Again.</span>`
+          }, 1000);
+        }
+      })
+    }
+  </script>
+  </body>
+</html>
